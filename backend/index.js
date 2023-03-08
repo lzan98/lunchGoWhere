@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(cors());
 
 //ROUTES//
-//input an option (from a session)
+//input a choice
 app.post("/choices", async (req,res) => {
     try {
         const input = req.body;
@@ -22,7 +22,29 @@ app.post("/choices", async (req,res) => {
 }
 )
 
-//get all options from a session
+//get all options
+// app.get("/choices", async(req, res) => {
+//     try {
+//         const session_id = req.params.session_id;
+//         const allChoices = await pool.query("SELECT * FROM lunchChoices");
+
+//         res.json(allChoices.rows);
+//     } catch (err) {
+//         console.error(err.message);
+//     }
+// })
+
+//get all sessionIds
+app.get("/sessionIds", async(req, res) => {
+    try {
+        const sessionIds = await pool.query("SELECT DISTINCT session_id FROM lunchChoices");
+        res.json(sessionIds.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
+//get all choices from a session
 app.get("/choices/:session_id", async(req, res) => {
     try {
         const session_id = req.params.session_id;
@@ -34,8 +56,15 @@ app.get("/choices/:session_id", async(req, res) => {
     }
 })
 
-//delete(?)
-
+app.get("/random/:session_id", async(req, res) => {
+    try {
+        const session_id = req.params.session_id;
+        const choice = await pool.query("SELECT * FROM lunchChoices WHERE session_id = $1 ORDER BY random() LIMIT 1", [session_id]);
+        res.json(choice.rows[0]);
+    } catch (err) {
+        console.error(err.message);
+    }
+})
 
 
 

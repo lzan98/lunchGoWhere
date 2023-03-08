@@ -5,3 +5,9 @@ CREATE TABLE lunchChoices(
     session_id VARCHAR(6),
     choice VARCHAR(255)
 );
+
+CREATE TABLE lunchResults(
+    id SERIAL PRIMARY KEY,
+    session_id VARCHAR(6),
+    choice VARCHAR(255)
+);
