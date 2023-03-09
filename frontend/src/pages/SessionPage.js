@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import InputForm from "../components/InputForm";
+import InputList from "../components/InputList";
+import ChoiceGenerator from "../components/ChoiceGenerator";
+import "./SessionPage.css";
+import LunchDate from "../components/LunchDate";
 
 const SessionPage = () => {
-
     const params = useParams();
 
+    localStorage.setItem('session', params.sessionId);
+
     const [choices, setChoices] = useState([]);
-    const [generatedChoice, setGeneratedChoice] = useState('');
+    const [date, setDate] = useState();
 
     const saveInputHandler = async (enteredText) => {
         //post
         try {
-            const body = {session_id: params.sessionId,
-            choice: enteredText};
-            const response = await fetch("http://localhost:4000/choices", {
+            const currSessionId = params.sessionId;
+            const body = {choice: enteredText};
+            const response = await fetch(`http://localhost:4000/${currSessionId}/choices`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
@@ -27,17 +32,6 @@ const SessionPage = () => {
 
     }
 
-    const generateRandomChoice = async () => {
-        try {
-            const response = await fetch (`http://localhost:4000/random/${params.sessionId}`);
-            const data = await response.json();
-            console.log(data);
-            setGeneratedChoice(data);
-        } catch (err) {
-            console.error(err.message);
-        }
-    }
-
     const getChoices = async () => {
         try {
             const response = await fetch (`http://localhost:4000/choices/${params.sessionId}`);
@@ -48,27 +42,36 @@ const SessionPage = () => {
         }
     }
 
+    const getDate = async () => {
+        try {
+            const response = await fetch (`http://localhost:4000/${params.sessionId}/date`);
+            const data = await response.json();
+            setDate(data.session_date);
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
+
     useEffect(() => {
         getChoices();
     }, [])
 
+    useEffect(() => {
+        getDate();
+    }, [])
+
+    const url = window.location.href;
+
     return (
-    <div>
-      <h1>Current choices</h1>
-      <button onClick={getChoices}>Refresh List</button>
-     <ul>
-        {choices.map((choice) => (
-            <li key = {choice.id}>
-            {<h1>{choice.choice}</h1>}
-            </li>
-        ))}
-     </ul>
-     <InputForm onInput={saveInputHandler}/>
-
-     <button onClick={generateRandomChoice}> Generate a choice!</button>
-     <h1>{generatedChoice.choice}</h1>
-
-    </div>
+    <>
+    <LunchDate date={date}/>
+    <button onClick={() => {navigator.clipboard.writeText(url)}}>Copy Session Link</button>
+        <div className="sessionPage">
+            <InputList choices={choices} updateListHandler={getChoices}/>
+            <InputForm onInput={saveInputHandler}/>
+            <ChoiceGenerator/>
+        </div>
+    </>
     );
 }
 

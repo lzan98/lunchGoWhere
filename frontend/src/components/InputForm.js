@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./InputForm.css"
 
 const InputForm = (props) => {
 
@@ -15,10 +16,14 @@ const InputForm = (props) => {
     }
 
     return (
-     <form onSubmit={submitHandler}>
-        <input type="text" value={enteredText} onChange={textChangeHandler}/>
-        <button type="submit">Submit!</button>
+        <div className="inputFormDiv">
+            <h1>Lunch Go Where?</h1>
+            <form className="inputForm" onSubmit={submitHandler}>
+            <input className="input" type="text" value={enteredText} onChange={textChangeHandler}/>
+            <button className="submitButton" type="submit">Submit!</button>
      </form>   
+
+        </div>
     )
 }
 

@@ -1,0 +1,12 @@
+.inputList {
+    width: 40rem;
+    max-width: 95%;
+    padding-left: 30px;
+}
+
+.inputList__item {
+    align-items: center;
+    text-align: center;
+    align-content: center;
+    padding-bottom: 0.2rem;
+}

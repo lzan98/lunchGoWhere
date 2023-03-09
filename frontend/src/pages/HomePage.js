@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Card from "../components/UI/Card"
+import "./HomePage.css"
 import { json, Link, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
@@ -9,8 +11,20 @@ const HomePage = () => {
         setSessionId(event.target.value);
     }
 
-    const navigateHandler = () => {
-        const newSessionId = Math.random().toString(36).substring(2,8);
+    const navigateHandler = async () => {
+        const newSessionId = String.fromCharCode(97+Math.floor(Math.random() * 26)) + Math.random().toString(36).substring(2,7);
+        // add session into sessions
+        const body = {date: Date.now() / 1000};
+        try {
+            const response = await fetch(`http://localhost:4000/create/${newSessionId}`, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            });
+        } catch (err) {
+            console.error(err.message);
+        }
+        // create table for session
         navigate(newSessionId);
     }
 
@@ -37,14 +51,14 @@ const HomePage = () => {
     }
 
     return ( 
-    <div>
-    <h1> My Home Page </h1>
-    <form onSubmit={submitHandler}>
-        <input type="text" name="sessionId"
-        value={sessionId} onChange={sessionIdChangeHandler}></input>
-        <button type="submit">Enter</button>
-    </form>
-    <button onClick={navigateHandler}>New Session</button>
+    <div style={{display:"inline-block"}}>
+        <h1>Lunch Go Where?</h1>
+        <form className="homeForm" onSubmit={submitHandler}>
+            <input className="homeInput" type="text" name="sessionId" placeholder="Lunch Session Key"
+            value={sessionId} onChange={sessionIdChangeHandler}></input>
+            <button className="homeButton" type="submit">Enter</button>
+        </form>
+    <button className="homeNewSessionButton" onClick={navigateHandler}>New Session</button>
     </div>
     );
 }

@@ -1,0 +1,33 @@
+.inputFormDiv {
+    width: 40rem;
+    max-width: 95%;
+}
+.inputForm {
+    border-radius: 12px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
+    text-align: center;
+    width: 25rem;
+    height: 10rem;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+}
+
+.input {
+    margin: 10px 25px 10px 25px;    
+    background-color: white;
+    border-color: darkolivegreen;
+    text-align: center;
+    height: 5rem;
+    font-size: larger;
+    font-style: bolder;
+    color: black;
+}
+
+.submitButton {
+    margin: 25px 50px 20px 50px;
+    margin-top: auto;
+    height: 3rem;
+    font-size: 1.5rem;
+    background-color: black;
+}
