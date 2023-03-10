@@ -47,3 +47,21 @@ You should be redirected to a webpage with the address `http://localhost:3000/`.
 ## API Documentation
 
 Refer to [API Documentation](./APIDocumentation.md) .
+
+## Screenshots
+### Home Page
+![homePage](https://github.com/lzan98/lunchGoWhere/blob/main/screenshots/Screenshot%202023-03-10%20at%2010.08.32.png)
+
+### Create a new session
+![newSession](https://github.com/lzan98/lunchGoWhere/blob/main/screenshots/Screenshot%202023-03-10%20at%2010.09.27.png)
+
+### Input and submit a choice
+![input](https://github.com/lzan98/lunchGoWhere/blob/main/screenshots/Screenshot%202023-03-10%20at%2010.33.12.png)
+
+![submit](https://github.com/lzan98/lunchGoWhere/blob/main/screenshots/Screenshot%202023-03-10%20at%2010.11.35.png)
+
+### Generate a random choice
+![random](https://github.com/lzan98/lunchGoWhere/blob/main/screenshots/Screenshot%202023-03-10%20at%2010.12.37.png)
+
+### Regenerate a random choice
+![regenerate](https://github.com/lzan98/lunchGoWhere/blob/main/screenshots/Screenshot%202023-03-10%20at%2010.13.01.png)
