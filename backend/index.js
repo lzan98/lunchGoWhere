@@ -9,7 +9,7 @@ app.use(cors());
 
 //ROUTES//
 //input a choice from a session
-app.post("/:session_id/choices", async (req,res) => {
+app.post("/:session_id/create", async (req,res) => {
     try {
         const input = req.body;
         const sessionId = req.params.session_id;
@@ -42,7 +42,7 @@ app.post("/create/:new_session_id", async(req, res) => {
 
         newSessionId = req.params.new_session_id;
         await pool.query("CREATE TABLE " + newSessionId + " (id SERIAL PRIMARY KEY, choice VARCHAR(255))");
-        res.json();
+        res.sendStatus(200);
     } catch (err) {
         console.error(err.message);
     }
@@ -59,7 +59,7 @@ app.get("/sessionIds", async(req, res) => {
 })
 
 //get all choices from a session
-app.get("/choices/:session_id", async(req, res) => {
+app.get("/:session_id/choices", async(req, res) => {
     try {
         const session_id = req.params.session_id;
         const allChoices = await pool.query("SELECT * FROM " + session_id);
@@ -72,7 +72,7 @@ app.get("/choices/:session_id", async(req, res) => {
 
 
 // get a random choice from session
-app.get("/random/:session_id", async(req, res) => {
+app.get("/:session_id/random", async(req, res) => {
     try {
         const session_id = req.params.session_id;
         const choice = await pool.query("SELECT * FROM " + session_id + " ORDER BY random() LIMIT 1");
@@ -87,7 +87,8 @@ app.post("/:session_id/update", async(req, res) => {
     try {
         const session_id = req.params.session_id;
         const {choice} = req.body;
-        await pool.query("INSERT INTO HISTORY (session_id, choice) VALUES ($1, $2)", [session_id, choice] );
+        const response = await pool.query("INSERT INTO HISTORY (session_id, choice) VALUES ($1, $2) RETURNING *", [session_id, choice] );
+        res.json(response.rows[0]);
     } catch (err) {
         console.error(err.message);
     }

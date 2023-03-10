@@ -12,7 +12,7 @@ const ChoiceGenerator = () => {
 
     const generateRandomChoice = async () => {
         try {
-            const response = await fetch (`http://localhost:4000/random/${params.sessionId}`);
+            const response = await fetch (`http://localhost:4000/${params.sessionId}/random`);
             const data = await response.json();
             setGeneratedChoice(data);
         } catch (err) {

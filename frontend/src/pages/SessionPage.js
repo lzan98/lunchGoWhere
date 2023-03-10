@@ -19,7 +19,7 @@ const SessionPage = () => {
         try {
             const currSessionId = params.sessionId;
             const body = {choice: enteredText};
-            const response = await fetch(`http://localhost:4000/${currSessionId}/choices`, {
+            const response = await fetch(`http://localhost:4000/${currSessionId}/create`, {
                 method: "POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(body)
@@ -34,7 +34,7 @@ const SessionPage = () => {
 
     const getChoices = async () => {
         try {
-            const response = await fetch (`http://localhost:4000/choices/${params.sessionId}`);
+            const response = await fetch (`http://localhost:4000/${params.sessionId}/choices`);
             const data = await response.json();
             setChoices(data);
         } catch (err) {
