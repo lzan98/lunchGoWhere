@@ -45,33 +45,6 @@ Sample Response:
 }
 ```
 
-### `POST` /create/session_id
----
-
-Creates a new lunch session 
-
-Example URL: `http://localhost:4000/create/q1w3rs`
-
-Sample Response:
-```
-OK
-```
-
-### `GET` /session_id/date
----
-
-Returns the date of a lunch session
-
-Example URL: `http://localhost:4000/ug5dn0/date`
-
-Sample Response:
-```
-{
-    "session_date": "2023-03-09T13:02:58.439Z"
-}
-
-```
-
 ### `GET` /session_id/random
 ---
 Returns a random lunch option from a lunch session
@@ -118,6 +91,43 @@ Sample Response:
 ]
 ```
 
+### `POST` /session_id/update
+---
+
+Updates a randomly generated choice from a lunch session into its history
+
+Example URL: `http://localhost:4000/abcdef/update`
+
+Sample Request:
+```
+{
+    "choice": "Burger King"
+}
+```
+Sample Response:
+```
+{
+    "id": 101,
+    "session_id": "abcdef",
+    "choice": "Burger King"
+}
+```
+
+### `GET` /session_id/date
+---
+
+Returns the date of a lunch session
+
+Example URL: `http://localhost:4000/ug5dn0/date`
+
+Sample Response:
+```
+{
+    "session_date": "2023-03-09T13:02:58.439Z"
+}
+
+```
+
 ### `GET` /session_ids
 ---
 Returns all lunch session IDs
@@ -157,24 +167,14 @@ Sample Response:
 ]
 ```
 
-### `POST` /session_id/update
+### `POST` /create/session_id
 ---
 
-Updates a randomly generated choice from a lunch session into its history
+Creates a new lunch session 
 
-Example URL: `http://localhost:4000/abcdef/update`
+Example URL: `http://localhost:4000/create/q1w3rs`
 
-Sample Request:
-```
-{
-    "choice": "Burger King"
-}
-```
 Sample Response:
 ```
-{
-    "id": 101,
-    "session_id": "abcdef",
-    "choice": "Burger King"
-}
+OK
 ```

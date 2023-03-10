@@ -2,7 +2,7 @@
 
 ## Prerequisite
 
-To run this application locally, the following steps are neccessary
+To run this application locally, the following steps are neccessary:
 
 ### Clone this repository
 - Run the following command from a directory of your choice:
@@ -25,24 +25,25 @@ const pool = new Pool({
 });
 ```
 ### Install dependencies 
-Run the following command in the `backend` and `frontend` directories
+Run the following command in the `backend` and `frontend` directories:
 
 ```
 npm install
 ```
 ### Starting the server
-Run the following command in the `backend` directory
+Run the following command in the `backend` directory:
 
 ```
 node index
 ```
-You should see a message `Up and running on 4000*`
+You should see a message `*Up and running on 4000`.
 
 ### Starting the server
 Run the following command in the `frontend` directory
 ```
 npm start
 ```
+You should be redirected to a webpage with the address `http://localhost:3000/`.
 ## API Documentation
 
-Refer to [API Documentation](./APIDocumentation.md) 
+Refer to [API Documentation](./APIDocumentation.md) .
