@@ -13,7 +13,9 @@ git clone https://github.com/lzan98/lunchGoWhere.git
 - Refer to [PostgreSQL Installation Docs](https://www.postgresql.org/docs/current/tutorial-install.html) and [Node.js Dev Guide](https://nodejs.dev/en/learn/how-to-install-nodejs/)
 
 ### Configure PostgreSQL database
-Edit the `backend/database.js` file according to your configurations. Specifically, the following field should be updated:
+Create a database `lunchgowhere` and run the commands in `backend/database.sql`.
+
+Next, edit the `backend/database.js` file according to your configurations. Specifically, the following field should be updated:
 
 ```
 const pool = new Pool({
