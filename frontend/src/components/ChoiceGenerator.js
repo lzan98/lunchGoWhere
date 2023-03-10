@@ -35,7 +35,7 @@ const ChoiceGenerator = () => {
 
     const getHistory = async () => {
         try {
-            const response = await fetch (`http://localhost:4000/${params.sessionId}/getHistory`);
+            const response = await fetch (`http://localhost:4000/${params.sessionId}/history`);
             const data = await response.json();
             setGeneratedChoices(data);
             console.log(data);

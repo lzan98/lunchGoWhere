@@ -94,7 +94,7 @@ app.post("/:session_id/update", async(req, res) => {
 })
 
 // get all previously generated choices from a session
-app.get("/:session_id/getHistory", async(req, res) => {
+app.get("/:session_id/history", async(req, res) => {
     try {
         const session_id = req.params.session_id;
         const choice = await pool.query("SELECT * FROM HISTORY WHERE session_id = $1 ORDER BY id DESC", [session_id]);
