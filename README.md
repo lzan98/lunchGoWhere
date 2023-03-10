@@ -52,7 +52,7 @@ Refer to [API Documentation](./APIDocumentation.md) .
 
 ## Screenshots
 ### Home Page
-![homePage](https://github.com/lzan98/lunchGoWhere/blob/main/screenshots/Screenshot%202023-03-10%20at%2010.08.32.png)
+![homePage](https://github.com/lzan98/lunchGoWhere/blob/main/screenshots/Screenshot%202023-03-10%20at%2010.46.17.png)
 
 ### Create a new session
 ![newSession](https://github.com/lzan98/lunchGoWhere/blob/main/screenshots/Screenshot%202023-03-10%20at%2010.09.27.png)
